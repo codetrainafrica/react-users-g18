@@ -6,7 +6,8 @@ class UserForm extends Component {
         this.state = {
             name: "",
             email: "",
-            gen: ""
+            gen: "",
+            // id: Math.random().toString()
         }
     }
 
