@@ -1,12 +1,17 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
 
-const User = ({ user, index }) => {
+const User = ({ user }) => {
     return (
-        <div className="user" key={index}>
-            <h3>Name: {user.name}</h3>
-            <p>Email: {user.email}</p>
-            <p>Gen: {user.gen}</p>
-            <hr />
+        <div className="user">
+            <Card>
+                <Card.Header>{user.name}</Card.Header>
+                <ListGroup variant="flush">
+                    <ListGroup.Item>Email: {user.email}</ListGroup.Item>
+                    <ListGroup.Item>Gen: {user.gen}</ListGroup.Item>
+                </ListGroup>
+            </Card>
         </div>
     );
 }
