@@ -1,23 +1,33 @@
-import React, { Component } from 'react';
-import UserList from './components/UserList';
-import UserForm from './components/UserForm';
+import React, { Component } from "react";
+import UserList from "./components/UserList";
+import UserForm from "./components/UserForm";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: []
-        }
+            users: [
+                { name: "Zak", email: "zak@email.com", gen: 23, id: "84379843.fsdjhj" },
+                { name: "Kobi", email: "kobu@email.com", gen: 3, id: "skdlj4839483" },
+            ],
+        };
     }
 
     handleAddUser = (newUser) => {
+        newUser.id = Math.random().toString();
         this.setState({
-            users: [newUser, ...this.state.users]
-        })
-    }
+            users: [newUser, ...this.state.users],
+        });
+    };
+
+    handleDeleteUser = (userId) => {
+        const savedUsers = this.state.users.filter((user => {
+            return user.id !== userId
+        }));
+        this.setState({users: savedUsers})
+    };
 
     render() {
-
         return (
             <div className="container">
                 <div className="row">
@@ -25,7 +35,10 @@ class App extends Component {
                         <UserForm addUser={this.handleAddUser} />
                     </div>
                     <div className="col">
-                        <UserList users={this.state.users} />
+                        <UserList
+                            users={this.state.users}
+                            deleteUser={this.handleDeleteUser}
+                        />
                     </div>
                 </div>
             </div>
