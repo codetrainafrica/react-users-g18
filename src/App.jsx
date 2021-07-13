@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import User from './components/User';
+import UserList from './components/UserList';
 import UserForm from './components/UserForm';
 
 class App extends Component {
@@ -11,22 +11,23 @@ class App extends Component {
     }
 
     handleAddUser = (newUser) => {
-        this.setState({ 
-            users: [newUser, ...this.state.users] 
+        this.setState({
+            users: [newUser, ...this.state.users]
         })
     }
 
     render() {
-        const users = this.state.users.map((user, index) => {
-            return (
-                <User user={user} index={index} />
-            )
-        })
 
         return (
-            <div style={{ margin: "50px" }}>
-                <UserForm addUser={this.handleAddUser} />
-                {users}
+            <div className="container">
+                <div className="row">
+                    <div className="col-4">
+                        <UserForm addUser={this.handleAddUser} />
+                    </div>
+                    <div className="col">
+                        <UserList users={this.state.users} />
+                    </div>
+                </div>
             </div>
         );
     }
