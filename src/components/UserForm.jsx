@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addUser } from '../actions/userActions'
 
 class UserForm extends Component {
     constructor(props) {
@@ -7,7 +9,6 @@ class UserForm extends Component {
             name: "",
             email: "",
             gen: "",
-            // id: Math.random().toString()
         }
     }
 
@@ -17,7 +18,7 @@ class UserForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addUser(this.state);
+        this.props.addNewUser(this.state);
         this.setState({
             name: "",
             email: "",
@@ -63,4 +64,8 @@ class UserForm extends Component {
     }
 }
 
-export default UserForm;
+const mapDispatchToProps = {
+    addNewUser: addUser
+}
+
+export default connect(null, mapDispatchToProps)(UserForm);
