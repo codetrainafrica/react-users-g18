@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addUser } from '../actions/userActions'
 
-class UserForm extends Component {
+class EditUserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            email: "",
-            gen: "",
+            name: props.user.name || "",
+            email: props.user.email || "",
+            gen: props.user.gen || "",
+            id: props.user.id || ""
         }
     }
 
@@ -18,12 +17,13 @@ class UserForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addNewUser(this.state);
+        this.props.editUser(this.state);
         this.setState({
             name: "",
             email: "",
             gen: ""
-        })
+        });
+        this.props.closeModal();
     }
 
     render() {
@@ -57,15 +57,11 @@ class UserForm extends Component {
                     />
                 </div>
                 <div className="form-control">
-                    <button type="submit">Add user</button>
+                    <button type="submit">Edit user</button>
                 </div>
             </form>
         );
     }
 }
 
-const mapDispatchToProps = {
-    addNewUser: addUser
-}
-
-export default connect(null, mapDispatchToProps)(UserForm);
+export default EditUserForm;
