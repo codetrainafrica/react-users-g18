@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import { editUser } from '../actions/userActions'
 
 class EditUserForm extends Component {
     constructor(props) {
@@ -64,4 +66,8 @@ class EditUserForm extends Component {
     }
 }
 
-export default EditUserForm;
+const mapDispatchToProps = {
+    editUser: editUser
+}
+
+export default connect(null, mapDispatchToProps)(EditUserForm);

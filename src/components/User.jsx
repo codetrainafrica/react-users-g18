@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Modal from "react-bootstrap/Modal";
 import EditUserForm from "./EditUserForm";
+import {connect} from 'react-redux';
+import { deleteUser } from '../actions/userActions';
 
 const User = ({ user, deleteUser, editUser }) => {
   const [show, setShow] = useState(false);
@@ -47,4 +49,8 @@ const User = ({ user, deleteUser, editUser }) => {
   );
 };
 
-export default User;
+const mapDispatchToProps = {
+  deleteUser
+}
+
+export default connect(null, mapDispatchToProps)(User);
