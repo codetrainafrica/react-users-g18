@@ -1,4 +1,4 @@
-import { ADD_USER, DELETE_USER, EDIT_USER } from "../actions/userActions";
+import { ADD_USER, DELETE_USER, EDIT_USER, getAlluser } from "../actions/userActions";
 
 const initialState = {
   users: [
@@ -25,6 +25,11 @@ const usersReducer = (state = initialState, action) => {
       return {...state, users: state.users.map((user) =>
         user.id === action.payload.id ? action.payload : user
       )}
+      case'SET_ALL_USERS':
+      
+      return {...state, users: action.payload};
+
+      
     default:
       return state;
   }
