@@ -1,15 +1,7 @@
 import { ADD_USER, DELETE_USER, EDIT_USER } from "../actions/userActions";
 
 const initialState = {
-  users: [
-    {
-      name: "Zakyyyyyy",
-      email: "zak@email.com",
-      gen: 23,
-      id: "84379843.fsdjhj",
-    },
-    { name: "Kobi", email: "kobu@email.com", gen: 3, id: "skdlj4839483" },
-  ],
+  users: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -25,6 +17,9 @@ const usersReducer = (state = initialState, action) => {
       return {...state, users: state.users.map((user) =>
         user.id === action.payload.id ? action.payload : user
       )}
+
+      case 'SET_ALL_USERS':
+        return{ ...state,  users: action.payload} 
     default:
       return state;
   }
