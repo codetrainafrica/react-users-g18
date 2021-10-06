@@ -71,7 +71,7 @@ getFirestore().collection('users').doc(updatedUser.id).set(updatedUser).then(()=
 export const getAllusers =()=>{
 return( dispatch, state, {getfirestore})=>{
 getFirestore()
-.collection('users').orderBy('timestamp','de——sc')
+.collection('users').orderBy('timestamp','desc')
 .onSnapshot((snapshot)=>{
 let users =[];
 snapshot.forEach((doc)=>{
